@@ -6,14 +6,14 @@ function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         try {
             const data = await login(username, password);
             localStorage.setItem('token', data.token);
             window.location.href = '/';
-        } catch (err) {
+        } catch (error) {
             setError('Λάθος username ή password');
         }
 
