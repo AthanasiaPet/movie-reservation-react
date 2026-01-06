@@ -9,4 +9,9 @@ const createReservation = async (screeningId: number) => {
     return response.data;
 };
 
-export { createReservation };
+const getMyReservations = async () => {
+    const response = await api.get('/reservations/my');
+    return response.data;
+};
+
+export { createReservation, getMyReservations };
