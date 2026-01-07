@@ -1,6 +1,15 @@
 import {useEffect, useState} from "react";
 import getMovies from "../api/movieService.tsx";
 import { useNavigate } from 'react-router-dom';
+import inception from '../images/inception.jpg'
+import matrix from '../images/matrix.jpg'
+import dark_knight from '../images/dark_knight.jpg'
+import die_hard from '../images/die_hard.jpg'
+import about_time from '../images/about_time.jpg'
+import love_actually from '../images/love_actually.jpg'
+import zootopia_2 from '../images/zootopia_2.jpg'
+import grown_ups from '../images/grown_ups.jpg'
+import dragon from '../images/dragon.jpg'
 
 
 
@@ -9,6 +18,20 @@ function Movies() {
     const [loading, setLoading] = useState(true);
 
     const navigate = useNavigate();
+
+    const moviePosters: Record<string, string> = {
+        Inception: inception,
+        "The Matrix": matrix,
+        "The Dark Knight": dark_knight,
+        "Die Hard": die_hard,
+        "About Time": about_time,
+        "Love Actually": love_actually,
+        "Zootopia 2": zootopia_2,
+        "Grown Ups": grown_ups,
+        "How To Train Your Dragon": dragon
+
+    };
+
 
 
     useEffect(() => {
@@ -39,15 +62,28 @@ function Movies() {
 
                 <ul className="space-y-2">
                     {movies.map((movie: any) => (
-                        <li key={movie.id} className="border p-2 rounded cursor-pointer hover:bg-blue-200" onClick={() => navigate(`/movies/${movie.id}/screenings`)}>
-                            <div className="flex gap-2 items-center">
-                                <strong>{movie.title}</strong>
+                        <li
+                            key={movie.id}
+                            onClick={() => navigate(`/movies/${movie.id}/screenings`)}
+                            className="border rounded-lg overflow-hidden cursor-pointer hover:shadow-md transition flex h-48"
+                        >
+                            <img
+                                src={moviePosters[movie.title]}
+                                alt={movie.title}
+                                className="w-32 h-full object-cover"
+                            />
+
+                            <div className="p-4 flex flex-col gap-2 flex-1">
+                                <strong className="text-lg">{movie.title}</strong>
                                 <span className="text-sm text-gray-500">
-                                  {movie.duration} min - {movie.genre}
+                                 {movie.duration} min • {movie.genre}
                                 </span>
-                            </div>
-                            <div className="text-sm text-gray-600">
-                                {movie.description}
+                                <p className="text-sm text-gray-600 line-clamp-3">
+                                    {movie.description}
+                                </p>
+                                <span className="mt-auto text-blue-600 text-sm">
+                                    View screenings →
+                                </span>
                             </div>
                         </li>
 

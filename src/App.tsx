@@ -6,6 +6,8 @@ import ProtectedRoute from "./components/ProtectedRoute.tsx";
 import Movies from "./pages/MoviePage.tsx";
 import Screenings from "./pages/ScreeningPage.tsx";
 import MyReservations from "./pages/MyReservationPage.tsx";
+import Home from "./pages/HomePage.tsx";
+import Register from "./pages/RegisterPage.tsx";
 
 
 
@@ -18,7 +20,7 @@ function App() {
             <Navbar />
 
             <Routes>
-                <Route path="/" element={<h1>Home</h1>} />
+                <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/reservations" element={
                     <ProtectedRoute>
@@ -32,6 +34,7 @@ function App() {
                         <MyReservations />
                     </ProtectedRoute>}
                 />
+                <Route path="/register" element={<Register />} />
             </Routes>
 
         </BrowserRouter>

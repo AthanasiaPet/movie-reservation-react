@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {login} from "../api/authService.ts";
+import {Link} from "react-router-dom";
 
 function Login() {
     const [username, setUsername] = useState('');
@@ -46,6 +47,14 @@ function Login() {
                     <button type="submit" className="bg-blue-600 text-white p-2">
                         Login
                     </button>
+
+                    <p className="text-sm mt-4 text-center">
+                        Don’t have an account?{' '}
+                        <Link to="/register" className="text-blue-600 hover:underline">
+                            Register Now!
+                        </Link>
+                    </p>
+
                 </form>
             </div>
 
