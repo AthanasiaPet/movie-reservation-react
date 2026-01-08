@@ -16,6 +16,8 @@ import dragon from '../images/dragon.jpg'
 function Movies() {
     const [movies, setMovies] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
+    const [selectedGenre, setSelectedGenre] = useState('All');
+
 
     const navigate = useNavigate();
 
@@ -53,6 +55,9 @@ function Movies() {
         return <p>Loading...</p>;
     }
 
+    const genres = ['All', ...new Set(movies.map(movie => movie.genre))];
+    const filteredMovies = selectedGenre === 'All' ? movies : movies.filter(movie => movie.genre.trim().toLowerCase() === selectedGenre.toLowerCase());
+
     return (
         <>
             <div className="p-4">
@@ -60,8 +65,24 @@ function Movies() {
 
                 {movies.length === 0 && <p>No movies found.</p>}
 
+                <div className="mb-4">
+                    <label className="mr-2 font-bold">Genre:</label>
+                    <select
+                        value={selectedGenre}
+                        onChange={(e) => setSelectedGenre(e.target.value)}
+                        className="border rounded px-2 py-1 text-sm"
+                    >
+                        {genres.map((genre) => (
+                            <option key={genre} value={genre}>
+                                {genre}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+
+
                 <ul className="space-y-2">
-                    {movies.map((movie: any) => (
+                    {filteredMovies.map((movie: any) => (
                         <li
                             key={movie.id}
                             onClick={() => navigate(`/movies/${movie.id}/screenings`)}
