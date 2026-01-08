@@ -17,6 +17,8 @@ function Movies() {
     const [movies, setMovies] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [selectedGenre, setSelectedGenre] = useState('All');
+    const [sortOption, setSortOption] = useState('default');
+
 
 
     const navigate = useNavigate();
@@ -58,6 +60,17 @@ function Movies() {
     const genres = ['All', ...new Set(movies.map(movie => movie.genre))];
     const filteredMovies = selectedGenre === 'All' ? movies : movies.filter(movie => movie.genre.trim().toLowerCase() === selectedGenre.toLowerCase());
 
+    const sortedMovies = [...filteredMovies].sort((a, b) => {
+        if (sortOption === 'title') {
+            return a.title.localeCompare(b.title);
+        }
+
+        if (sortOption === 'duration') {
+            return (Number(a.duration) || 0) - (Number(b.duration) || 0);
+        }
+    })
+
+
     return (
         <>
             <div className="p-4">
@@ -65,24 +78,40 @@ function Movies() {
 
                 {movies.length === 0 && <p>No movies found.</p>}
 
-                <div className="mb-4">
-                    <label className="mr-2 font-bold">Genre:</label>
-                    <select
-                        value={selectedGenre}
-                        onChange={(e) => setSelectedGenre(e.target.value)}
-                        className="border rounded px-2 py-1 text-sm"
-                    >
-                        {genres.map((genre) => (
-                            <option key={genre} value={genre}>
-                                {genre}
-                            </option>
-                        ))}
-                    </select>
+                <div className="mb-4 flex gap-4 items-center">
+                    <div>
+                        <label className="mr-2 font-bold">Genre:</label>
+                        <select
+                            value={selectedGenre}
+                            onChange={(e) => setSelectedGenre(e.target.value)}
+                            className="border rounded px-2 py-1 text-sm"
+                        >
+                            {genres.map((genre) => (
+                                <option key={genre} value={genre}>
+                                    {genre}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div>
+                        <label className="mr-2 font-bold">Sort:</label>
+                        <select
+                            value={sortOption}
+                            onChange={(e) => setSortOption(e.target.value)}
+                            className="border rounded px-2 py-1 text-sm"
+                        >
+                            <option value="default">Default</option>
+                            <option value="title">Title (A–Z)</option>
+                            <option value="duration">Duration</option>
+                        </select>
+                    </div>
                 </div>
 
 
+
                 <ul className="space-y-2">
-                    {filteredMovies.map((movie: any) => (
+                    {sortedMovies.map((movie: any) => (
                         <li
                             key={movie.id}
                             onClick={() => navigate(`/movies/${movie.id}/screenings`)}

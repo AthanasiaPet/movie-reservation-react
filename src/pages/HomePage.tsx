@@ -19,7 +19,7 @@ function Home() {
 
                         <Link
                             to="/my-reservations"
-                            className="px-6 py-3 border border-gray-300 rounded hover:bg-gray-100"
+                            className="px-6 py-3 border border-gray-300 rounded hover:bg-gray-300"
                         >
                             My Reservations
                         </Link>
@@ -40,7 +40,7 @@ function Home() {
             <div className="flex gap-4">
                 <Link
                     to="/movies"
-                    className="px-6 py-3 border border-gray-300 rounded hover:bg-gray-100"
+                    className="px-6 py-3 border border-gray-300 rounded hover:bg-gray-300"
                 >
                     Browse Movies
                 </Link>
