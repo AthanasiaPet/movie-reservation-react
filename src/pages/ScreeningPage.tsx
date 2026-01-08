@@ -32,9 +32,12 @@ function Screenings() {
         try {
             await createReservation(screeningId);
             alert('Reservation created successfully!');
-        } catch (error) {
-            console.error('Reservation failed', error);
-            alert('Failed to create reservation');
+        } catch (error: any) {
+            if (error.response?.status === 409) {
+                alert('This seat is already reserved. Please choose another one.');
+            } else {
+                alert('Failed to create reservation');
+            }
         }
     };
 
