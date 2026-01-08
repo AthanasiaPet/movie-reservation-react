@@ -7,6 +7,8 @@ import { createReservation } from '../api/reservationService';
 
 function Screenings() {
     const [screenings, setScreenings] = useState<any[]>([]);
+    const [seatNumber, setSeatNumber] = useState('');
+
     const {movieId} = useParams();
 
     useEffect(() => {
@@ -22,16 +24,22 @@ function Screenings() {
     }, [movieId]);
 
     const handleReserve = async (screeningId: number) => {
-        const token = localStorage.getItem('token');
 
+        const token = localStorage.getItem('token');
         if (!token) {
             window.location.href = '/login';
             return;
         }
 
+        if (!seatNumber.trim()) {
+            alert('Please enter a seat number');
+            return;
+        }
+
         try {
-            await createReservation(screeningId);
+            await createReservation(screeningId, seatNumber);
             alert('Reservation created successfully!');
+            setSeatNumber('');
         } catch (error: any) {
             if (error.response?.status === 409) {
                 alert('This seat is already reserved. Please choose another one.');
@@ -65,6 +73,13 @@ function Screenings() {
                             <div>
                                 <strong>Price:</strong> {screening.price}€
                             </div>
+                            <input
+                                type="text"
+                                placeholder="Seat (e.g. A1)"
+                                value={seatNumber}
+                                onChange={(e) => setSeatNumber(e.target.value)}
+                                className="border p-1 rounded text-sm w-32"
+                            />
                             <button
                                 onClick={() => handleReserve(screening.id)}
                                 className="mt-2 px-3 py-1 bg-blue-600 text-white rounded"

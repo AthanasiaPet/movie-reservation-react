@@ -1,9 +1,9 @@
 import api from './axios';
 
-const createReservation = async (screeningId: number) => {
+const createReservation = async (screeningId: number, seatNumber: string) => {
     const response = await api.post('/reservations', {
         screeningId,
-        seatNumber: 'A1'
+        seatNumber
     });
 
     return response.data;
