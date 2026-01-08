@@ -36,7 +36,12 @@ function MyReservations() {
                         <div><strong>Movie:</strong> {reservation.movieTitle}</div>
                         <div><strong>Cinema Hall:</strong> {reservation.cinemaHallName}</div>
                         <div><strong>Seat:</strong> {reservation.seatNumber}</div>
-                        <div><strong>Status:</strong> {reservation.status}</div>
+                        <div className="flex items-center gap-2">
+                            <strong>Status:</strong>
+                            <span className="px-2 py-1 text-s font-semibold rounded-full bg-green-100 text-green-700">
+                                {reservation.status}
+                            </span>
+                        </div>
                     </li>
                 ))}
             </ul>
