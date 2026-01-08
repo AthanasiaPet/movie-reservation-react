@@ -1,73 +1,26 @@
-# React + TypeScript + Vite
+# Movie Reservation System - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is the backend of a movie reservation system developed as the final project for the Coding Factory Program of Athens University of Economics and Business.
+It provides a user-friendly web interface for browsing movies, viewing screenings, making seat reservations, and managing user authentication.
 
-Currently, two official plugins are available:
+# Features
+Public movie listing, Movie filtering and sorting, View screenings per movie, Seat reservation, User authentication (login / register), Role-based UI (admin / user).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Authentication & Authorization
+Authentication is handled using **JWT tokens**: Tokens are stored in localStorage, Protected routes restrict access to authenticated users, Admin-only features are displayed based on user role.
 
-## React Compiler
+# Technology Stack
+React, Vite, Typescript, Axios, Tailwind CSS, React Router
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Testing
+Application behavior was manually tested through **UI interactions**. API communication was validated using **Postman** during backend testing. Path: postman/MovieReservationApp.postman_collection.json
 
-## Expanding the ESLint configuration
+# Build and Run instructions
+The frontend application runs on http://localhost:5173. The frontend is deployed locally for development purposes and communicates with the backend via REST APIs.
+bash
+npm install
+npm run dev
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# Backend Repository
+https://github.com/AthanasiaPet/movie-reservation
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
