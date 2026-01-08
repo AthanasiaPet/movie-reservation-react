@@ -1,7 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { getUserRole } from '../utils/jwtExtract';
+
 
 
 function Navbar() {
+    const role = getUserRole();
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
 
@@ -27,7 +30,7 @@ function Navbar() {
                         </Link>
                     )}
 
-                    {token && (
+                    {role === "ADMIN" && (
                         <Link to="/admin/movies/create" className="text-sm hover:underline">
                             Add Movie
                         </Link>
