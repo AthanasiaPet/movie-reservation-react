@@ -21,7 +21,7 @@ React, Vite, Typescript, Axios, Tailwind CSS, React Router
 # Testing
 Application behavior was manually tested through **UI interactions**. API communication was validated using **Postman** during backend testing. Path: postman/MovieReservationApp.postman_collection.json
 
-# Build and Run instructions
+# Build and Run Instructions
 ## Requirements
 - Node.js (for npm and Vite)
 ## Steps
