@@ -19,7 +19,7 @@ Authentication is handled using **JWT tokens**: Tokens are stored in localStorag
 React, Vite, Typescript, Axios, Tailwind CSS, React Router
 
 # Testing
-Application behavior was manually tested through **UI interactions**. API communication was validated using **Postman** during backend testing. Path: postman/MovieReservationApp.postman_collection.json
+Application behavior was manually tested through **UI interactions**. API communication was validated using **Postman** during backend testing. Path: `postman/MovieReservationApp.postman_collection.json`
 
 # Build and Run Instructions
 ## Requirements
