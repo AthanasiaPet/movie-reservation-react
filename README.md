@@ -1,6 +1,6 @@
 # Movie Reservation System - Frontend
 
-This project is the backend of a movie reservation system developed as the final project for the Coding Factory Program of Athens University of Economics and Business.
+This project is the frontend of a movie reservation system developed as the final project for the Coding Factory Program of Athens University of Economics and Business.
 It provides a user-friendly web interface for browsing movies, viewing screenings, making seat reservations, and managing user authentication.
 
 # Features
